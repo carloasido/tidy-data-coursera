@@ -82,9 +82,9 @@ merged_data <- train_df %>%
     from = c(1, 2, 3, 4, 5, 6),
     to = labels_df$X1
   ) %>%
-  # Convert identifier of the subject (1st column) to a factor
+  # Convert identifier of the subject (1st column) to factor
   mutate_at(1, as.factor) %>%
-  # and convert activity labels (2nd column) to a factor
+  # and convert activity labels (2nd column) to factor
   mutate_at(2, factor, levels = labels_df$X1) %>%
   # Remove leading digits on column names except the first two
   rename_with(str_remove, -(1:2), pattern = "[\\d]+") %>%
