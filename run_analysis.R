@@ -1,14 +1,15 @@
 # Set working directory
 setwd("../Downloads/Coursera/Data_Science_Foundations_using_R/Getting_and_cleaning_data/week4")
 
-# Load necessary packages
 # Tidyverse package is a collection of packages
 # which includes dplyr, readr, tidyr, etc.
 # install.packages("tidyverse)
+
+# Load necessary package
 library(tidyverse)
 
 
-# Load variable names from features data------------------------------------------------------
+# Load variable names from features data-------------------------------------------------------
 
 features_df <-
   read_delim("UCI HAR Dataset/features.txt",
@@ -16,8 +17,7 @@ features_df <-
     col_names = FALSE
   )
 
-
-# Load labels data----------------------------------------------------------------------------
+# Load labels data-----------------------------------------------------------------------------
 
 labels_df <-
   read_delim("UCI HAR Dataset/activity_labels.txt",
@@ -32,29 +32,29 @@ labels_df <-
   mutate_all(trimws)
 
 
-# Load train data-----------------------------------------------------------------------------
+# Load train data------------------------------------------------------------------------------
 
 # List filenames to load
 filenames1 <- list.files("UCI HAR Dataset/train", pattern = "*.txt")
 
-# Apply read_delim function to each train file names and
+# Apply read_delim function to each train filenames 
 train_df <- file.path("UCI HAR Dataset/train", filenames1) %>%
-  # automatically combines each file as a column in the train_df dataframe
+  # and automatically combines each file as a column in the train_df dataframe
   map_dfc(read_delim, delim = "\n", col_names = FALSE)
 
 
-# Load test data------------------------------------------------------------------------------
+# Load test data-------------------------------------------------------------------------------
 
 # List filenames to load
 filenames2 <- list.files("UCI HAR Dataset/test", pattern = "*.txt")
 
-# Apply read_delim function to each test file names
+# Apply read_delim function to each test filenames
 test_df <- file.path("UCI HAR Dataset/test", filenames2) %>%
   # and automatically combines each file as a column in the test_df dataframe
   map_dfc(read_delim, delim = "\n", col_names = FALSE)
 
 
-# Merge data and perform tidying--------------------------------------------------------------
+# Merge data and perform tidying---------------------------------------------------------------
 
 merged_data <- train_df %>%
   # Combine train and test df
@@ -82,9 +82,9 @@ merged_data <- train_df %>%
     from = c(1, 2, 3, 4, 5, 6),
     to = labels_df$X1
   ) %>%
-  # Convert identifier of the subject (1st column) as a factor
+  # Convert identifier of the subject (1st column) to a factor
   mutate_at(1, as.factor) %>%
-  # and convert activity labels (2nd column) as a factor
+  # and convert activity labels (2nd column) to a factor
   mutate_at(2, factor, levels = labels_df$X1) %>%
   # Remove leading digits on column names except the first two
   rename_with(str_remove, -(1:2), pattern = "[\\d]+") %>%
@@ -92,7 +92,7 @@ merged_data <- train_df %>%
   rename_with(trimws, -(1:2))
 
 
-# Generate summary table--------------------------------------------------------------------
+# Generate summary table-----------------------------------------------------------------------
   
   merged_data %>%
   group_by(subject, activity) %>%
