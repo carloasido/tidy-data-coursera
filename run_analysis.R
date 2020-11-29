@@ -71,7 +71,7 @@ merged_data <- train_df %>%
   select(
     "subject" = X1...1,
     "activity" = X1...3,
-    # and select other column names that contains the words 'mean' and 'std'.
+    # and select other column names that contain the words 'mean' and 'std'.
     contains(c("mean", "std"))
   ) %>%
   # Convert all columns to numbers(double) except the first two (which already are)
