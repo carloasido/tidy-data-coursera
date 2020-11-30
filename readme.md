@@ -12,7 +12,7 @@ This repository contains R script and other files for generating tidy data table
 
              
 ### Files
-* **run_analysis.R** contains code to produce tidy data. The script assumes the the data set are already downloaded. Also, the script operates around the *tidyverse* package which is a collection of packages for data science. More information about tidyverse can be found at [tidyverse website](tidyverse.org). Specifically, **run_analysis** performs the following procedure:
+* **run_analysis.R** contains code to produce tidy data. The script assumes the the data set are already downloaded. Also, the script operates around the *tidyverse* package which is a collection of packages for data science. More information about tidyverse can be found at [tidyverse website](https://www.tidyverse.org/). Specifically, **run_analysis** performs the following procedure:
 >  1. Load train, test, features ,and labels data.
 >  2. Perform tidy operations which include:
 >     * trimming leading whitespace and prefix numbers on column names
