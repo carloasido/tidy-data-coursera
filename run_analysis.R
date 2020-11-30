@@ -99,3 +99,6 @@ merged_data %>%
   arrange(subject) %>%
   # write output to a file
   write.table(file = "tidy_data.txt", row.names = FALSE, quote = FALSE)
+
+
+
