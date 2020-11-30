@@ -36,7 +36,7 @@ labels_df <-
 # List filenames to load
 filenames1 <- list.files("UCI HAR Dataset/train", pattern = "*.txt")
 
-# Apply read_delim function to each train filenames 
+# Apply read_delim function to each train filenames
 train_df <- file.path("UCI HAR Dataset/train", filenames1) %>%
   # and automatically combines each file as a column in the train_df dataframe
   map_dfc(read_delim, delim = "\n", col_names = FALSE)
@@ -92,12 +92,10 @@ merged_data <- train_df %>%
 
 
 # Generate summary table-----------------------------------------------------------------------
-  
-  merged_data %>%
+
+merged_data %>%
   group_by(subject, activity) %>%
   summarise_all(mean) %>%
   arrange(subject) %>%
   # write output to a file
-  write.table(file = 'tidy_data.txt', row.names = FALSE, quote = FALSE)
-
-
+  write.table(file = "tidy_data.txt", row.names = FALSE, quote = FALSE)
