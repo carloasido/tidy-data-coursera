@@ -8,7 +8,6 @@ setwd("../Downloads/Coursera/Data_Science_Foundations_using_R/Getting_and_cleani
 # Load necessary package
 library(tidyverse)
 
-
 # Load variable names from features data-------------------------------------------------------
 
 features_df <-
@@ -100,3 +99,5 @@ merged_data <- train_df %>%
   arrange(subject) %>%
   # write output to a file
   write.table(file = 'tidy_data.txt', row.names = FALSE, quote = FALSE)
+
+
